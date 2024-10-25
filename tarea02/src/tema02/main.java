@@ -7,7 +7,7 @@ public class main {
         // Creamos un objeto Scanner para leer la entrada del usuario
         Scanner scanner = new Scanner(System.in);
 
-        // Pedimos al usuario que ingrese los tres números de entrada
+        // Pedimos al usuario que ingrese los cinco números de entrada
         System.out.println("Introduce cinco números de entrada separados por espacios:");
 
         // Leemos la línea completa de entrada
@@ -16,7 +16,7 @@ public class main {
         // Dividimos la entrada en partes separadas por espacio y las guardamos en un array
         String[] numeros = input.split(" ");
 
-        // Verificamos que el usuario ha ingresado exactamente tres números
+        // Verificamos que el usuario ha ingresado exactamente cinco números
         if (numeros.length != 5) {
             System.out.println("Debes ingresar exactamente tres números.");
             return; // Termina el programa si no hay tres entradas
