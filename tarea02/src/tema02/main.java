@@ -1,108 +1,43 @@
 package tema02;
 
-/*importo la libreria scanner*/
 import java.util.Scanner;
 
-/*lo llamo AzulVerdeV3, porque ha habido dos versiones previas y en esta incluyo las mejoras de ambas*/
 public class main {
+    public static void main(String[] args) {
+        // Creamos un objeto Scanner para leer la entrada del usuario
+        Scanner scanner = new Scanner(System.in);
 
-	public static final String PAR = " VERDE ";
-	public static final String IMPAR = " AZUL ";
+        // Pedimos al usuario que ingrese los tres números de entrada
+        System.out.println("Introduce cinco números de entrada separados por espacios:");
 
-	public static void main(String[] args) {
+        // Leemos la línea completa de entrada
+        String input = scanner.nextLine();
 
-		Scanner entrada = new Scanner(System.in);
-		System.out.println("Cuantos Numeros desea Ingresar: ");
-		/* declaro el array para que almacene los numeros introducidos por teclado */
-		int miArray[] = new int[entrada.nextInt()];
+        // Dividimos la entrada en partes separadas por espacio y las guardamos en un array
+        String[] numeros = input.split(" ");
 
-		// llenando el Array, con las entradsa por teclado inroducidas en el metodo
-		// anterior
-		for (int e = 0; e < miArray.length; e++) {
-			System.out.println("Ingrese el " + (e + 1) + "º numero: ");
-			miArray[e] = entrada.nextInt();
+        // Verificamos que el usuario ha ingresado exactamente tres números
+        if (numeros.length != 5) {
+            System.out.println("Debes ingresar exactamente tres números.");
+            return; // Termina el programa si no hay tres entradas
+        }
 
-		}
+        // Creamos un StringBuilder para almacenar la salida final
+        StringBuilder resultado = new StringBuilder();
 
-		entrada.close();
+        // Recorremos cada número, verificamos si es par o impar y asignamos la grada correspondiente
+        for (String num : numeros) {
+            int numero = Integer.parseInt(num); // Convertimos el texto en número
 
-		// ordenando
-		/*
-		 * for (int i = 0; i < miArray.length; i++) { int min = i; for (int j = i + 1; j
-		 * < miArray.length; j++) { if (miArray[j] < miArray[min]) { min = j; } } if (i
-		 * != min) { int aux = miArray[i]; miArray[i] = miArray[min]; miArray[min] =
-		 * aux; } }
-		 */
-		// FIXME añadido por mi
-		/* arreglo para que me ayude a trabajar con los valores introducidos */
-		for (int i = 0; i < (miArray.length - 1); i++) {
-			for (int j = i + 1; j < miArray.length; j++) {
-				if (miArray[i] > miArray[j]) {
-					// Intercambiamos valores
-					int aux = miArray[i];
-					miArray[i] = miArray[j];
-					miArray[j] = aux;
-				}
-			}
-		}
-		/*
-		 * con este array mostrariamos los numeros de entrada introducidos en orden
-		 * numerico, por ahora lo dejo como un comentario
-		 * System.out.println("Mostrando array ordenado:"); for (int i = 0; i <
-		 * (miArray.length - 1); i++) { System.out.print(miArray[i]+" "); }
-		 */
-		System.out.println("");
-		// mostrando pares
-		System.out.println("Numeros Pares: ");
-		boolean checkPares = false;
-		for (int i = 0; i < miArray.length; i++) {
-			/*
-			 * para saber si el numero es par lo divido entre dos los valores dados en el
-			 * array, con este bucle los recorrera todos los dados
-			 */
-			if (miArray[i] % 2 == 0) {
-				System.out.println(miArray[i]);
-				checkPares = true;
-			}
-		}
-		/*
-		 * sino hay numero pares lo indicare como control para saber que le programa lo
-		 * lee correctamente
-		 */
-		if (!checkPares) {
-			System.out.println("No se ingresaron numeros pares!");
-		}
+            // Verificamos si el número es par o impar
+            if (numero % 2 == 0) {
+                resultado.append("VERDE "); // Si es par, va a la grada VERDE (Sur)
+            } else {
+                resultado.append("AZUL "); // Si es impar, va a la grada AZUL (Norte)
+            }
+        }
 
-		// mostrando impares
-		System.out.println("Numeros Impares: ");
-		boolean checkImpares = false;
-		for (int i = 0; i < miArray.length; i++) {
-			/*
-			 * para saber si el numero es impar lo divido entre dos los valores dados en el
-			 * array, con este bucle los recorrera todos los dados
-			 */
-			if (miArray[i] % 2 != 0) {
-				System.out.println(miArray[i]);
-				checkImpares = true;
-			}
-		}
-		/*
-		 * sino hay numero impares lo indicare como control para saber que le programa
-		 * lo lee correctamente
-		 */
-		if (!checkImpares) {
-			System.out.println("No se ingresaron numeros impares!");
-		}
-
-		// mostrando enunciado
-		System.out.println("Dirijase a la grada: ");
-		for (int i = 0; i < miArray.length; i++) {
-			if (miArray[i] % 2 == 0) {
-				System.out.print(PAR);
-			} else {
-				System.out.print(IMPAR);
-			}
-		}
-
-	}
+        // Eliminamos el último espacio sobrante y mostramos el resultado
+        System.out.println(resultado.toString().trim());
+    }
 }
